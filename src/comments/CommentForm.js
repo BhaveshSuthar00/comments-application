@@ -1,3 +1,4 @@
+import { Textarea, Button, Input } from "@chakra-ui/react";
 import { useState } from "react";
 
 const CommentForm = ({
@@ -16,22 +17,21 @@ const CommentForm = ({
   };
   return (
     <form onSubmit={onSubmit}>
-      <textarea
+      <Input
         className="comment-form-textarea"
-        value={text}
+        value={`${text}`}
         onChange={(e) => setText(e.target.value)}
       />
-      <button className="comment-form-button" disabled={isTextareaDisabled}>
+      <Button type="submit" className="comment-form-button" disabled={isTextareaDisabled}>
         {submitLabel}
-      </button>
+      </Button>
       {hasCancelButton && (
-        <button
-          type="button"
+        <Button
           className="comment-form-button comment-form-cancel-button"
           onClick={handleCancel}
         >
           Cancel
-        </button>
+        </Button>
       )}
     </form>
   );

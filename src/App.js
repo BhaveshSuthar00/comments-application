@@ -6,7 +6,7 @@ function App() {
     <div className="App">
        <h1>Comment App</h1>
       <Comments
-        commentsUrl="http://localhost:3004/comments"
+        commentsUrl="https://bit.ly/broken-link"
         currentUserId="1"
       />
     </div>

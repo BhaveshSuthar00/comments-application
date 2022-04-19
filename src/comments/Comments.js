@@ -7,7 +7,9 @@ import {
   updateComment as updateCommentApi,
   deleteComment as deleteCommentApi,
 } from "../api";
-
+import {
+  Box
+} from '@chakra-ui/react'
 const Comments = ({ commentsUrl, currentUserId }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
@@ -58,11 +60,10 @@ const Comments = ({ commentsUrl, currentUserId }) => {
   }, []);
 
   return (
-    <div className="comments">
-      <h3 className="comments-title">Comments</h3>
-      <div className="comment-form-title">Write comment</div>
+    <Box className="comments">
+      <Box className="comment-form-title">Write comment</Box>
       <CommentForm submitLabel="Write" handleSubmit={addComment} />
-      <div className="comments-container">
+      <Box className="comments-container">
         {rootComments.map((rootComment) => (
           <Comment
             key={rootComment.id}
@@ -76,8 +77,8 @@ const Comments = ({ commentsUrl, currentUserId }) => {
             currentUserId={currentUserId}
           />
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

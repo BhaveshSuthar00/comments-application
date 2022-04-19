@@ -1,3 +1,4 @@
+import { Avatar, Box, Button } from "@chakra-ui/react";
 import CommentForm from "./CommentForm";
 
 const Comment = ({
@@ -28,16 +29,16 @@ const Comment = ({
   const replyId = parentId ? parentId : comment.id;
   const createdAt = new Date(comment.createdAt).toLocaleDateString();
   return (
-    <div key={comment.id} className="comment">
-      <div className="comment-image-container">
-        <img src="/user-icon.png" />
-      </div>
-      <div className="comment-right-part">
-        <div className="comment-content">
-          <div className="comment-author">{comment.username}</div>
-          <div>{createdAt}</div>
-        </div>
-        {!isEditing && <div className="comment-text">{comment.body}</div>}
+    <Box key={comment.id} className="comment" display="flex" m={5}>
+      <Box className="comment-image-container" >
+        <Avatar src="https://bit.ly/broken-link" />
+      </Box>
+      <Box className="comment-right-part">
+        <Box className="comment-content">
+          <Box className="comment-author">{comment.username}</Box>
+          <Box>{createdAt}</Box>
+        </Box>
+        {!isEditing && <Box className="comment-text">{comment.body}</Box>}
         {isEditing && (
           <CommentForm
             submitLabel="Update"
@@ -49,36 +50,36 @@ const Comment = ({
             }}
           />
         )}
-        <div className="comment-actions">
+        <Box className="comment-actions" m={5}>
           {canReply && (
-            <div
+            <Button
               className="comment-action"
               onClick={() =>
                 setActiveComment({ id: comment.id, type: "replying" })
               }
             >
               Reply
-            </div>
+            </Button>
           )}
           {canEdit && (
-            <div
+            <Button
               className="comment-action"
               onClick={() =>
                 setActiveComment({ id: comment.id, type: "editing" })
               }
             >
               Edit
-            </div>
+            </Button>
           )}
           {canDelete && (
-            <div
+            <Button
               className="comment-action"
               onClick={() => deleteComment(comment.id)}
             >
               Delete
-            </div>
+            </Button>
           )}
-        </div>
+        </Box>
         {isReplying && (
           <CommentForm
             submitLabel="Reply"
@@ -86,7 +87,7 @@ const Comment = ({
           />
         )}
         {replies.length > 0 && (
-          <div className="replies">
+          <Box className="replies">
             {replies.map((reply) => (
               <Comment
                 comment={reply}
@@ -101,10 +102,10 @@ const Comment = ({
                 currentUserId={currentUserId}
               />
             ))}
-          </div>
+          </Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
